@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="ky">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ee">
+<title>Тимур &amp; Айжан — үйлөнүү тоюна чакыруу</title>
+<!-- Превью ссылки в WhatsApp/Telegram -->
+<meta property="og:title" content="Тимур &amp; Айжан — үйлөнүү тоюна чакыруу">
+<meta property="og:description" content="12-июнь, 2027 · Бишкек. Ачып көрүңүз ✉️">
+<meta property="og:image" content="https://nurmukhammedus.github.io/toy-invite/og.jpg">
+<meta property="og:url" content="https://nurmukhammedus.github.io/toy-invite/">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<script>
+/* ======================= ДАННЫЕ ПРИГЛАШЕНИЯ — меняйте только здесь ======================= */
+const CONFIG = {
+  groom: 'Тимур', bride: 'Айжан', monogram: 'Т&А',
+  // дата и время начала тоя (время Бишкека, +06:00)
+  date: '2027-06-12T16:00:00+06:00',
+  weekday: 'ишемби', monthName: 'июнь', calTitle: 'Июнь',
+  greeting: 'Кымбаттуу коноктор!',
+  text: 'Сиздерди балдарыбыз<br>{groom} &amp; {bride}дын<br>үйлөнүү тоюна<br>чакырабыз!',
+  text2: 'Келип ак батаңыздарды<br>берип кетиңиздер!',
+  program: [['16:00','Тойдун башталышы'],['17:00','Нике аземи'],['17:30','Банкет'],['21:00','Торт'],['22:00','Тойдун аякташы']],
+  venueType: 'Ресторан', venue: '«АЛА-ТОО ХОЛЛ»', address: 'Бишкек ш., Чүй пр., 1',
+  // ссылка на место в 2ГИС (откройте место в 2gis.kg → «Поделиться» → скопируйте ссылку)
+  mapUrl: 'https://2gis.kg/bishkek/search/%D0%90%D0%BB%D0%B0-%D0%A2%D0%BE%D0%BE',
+  dress: 'Кийимдериңизде ушул түстөрдү<br>колдонсоңуз, биз үчүн<br>чоң кубаныч болот',
+  colors: ['#2f4ea8','#7f9ad6','#c9d6ee','#f3efe6','#3b4766'],
+  rsvp: {
+    deadline: '1-июнга чейин жооп бериңиз',
+    // 1) Google Таблица: вставьте адрес веб-приложения Apps Script (см. README) — ответы попадут в таблицу
+    sheetUrl: '',
+    // 2) если sheetUrl пустой — ответ уходит сообщением в WhatsApp на этот номер (только цифры, с кодом страны)
+    whatsapp: '996700000000'
+  },
+  closing: 'Урматтоо менен,',
+  music: 'music.mp3',
+  footer: ''   // например: 'Сайт-чакыруу: @your_instagram'
+};
+</script>
+<style>
+:root{--ivory:#f7f4ee;--ink:#3b4766;--blue:#2f4ea8;--blue2:#5a78c9;--dusty:#c9d6ee;--muted:#7a8199}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:#e9e5dc;color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden;height:100vh}
+body.render{overflow:hidden;height:100vh}
+.script{font-family:"Great Vibes",cursive;font-weight:400}
+#content{width:100%;max-width:440px;margin:0 auto;position:relative;overflow:hidden;background:radial-gradient(120% 60% at 50% 0%,#fbf9f5 0%,var(--ivory) 60%),var(--ivory);box-shadow:0 0 60px rgba(0,0,0,.08)}
+section{position:relative;padding:56px 26px;text-align:center}
+.rv{will-change:transform,opacity}
+h2{font-family:"Great Vibes",cursive;font-weight:400;font-size:46px;color:var(--ink);line-height:1.1;margin-bottom:18px}
+.lead{font-size:21px;line-height:1.45;color:#46506e}
+.cap{letter-spacing:.3em;text-transform:uppercase;font-size:15px;color:var(--muted)}
+.btn{display:inline-block;background:var(--blue);color:#fff;border-radius:40px;padding:13px 30px;font-size:15px;letter-spacing:.16em;text-transform:uppercase;box-shadow:0 8px 22px rgba(47,78,168,.28);border:0;font-family:inherit;text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--blue);border:1px solid var(--blue);box-shadow:none}
+
+/* hero */
+#hero{height:100vh;height:100svh;min-height:600px;padding:0;color:#f3ead8;background:radial-gradient(90% 60% at 50% 38%,#2c3658 0%,#151a2e 55%,#0b0e1a 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+#hero canvas{position:absolute;inset:0;width:100%;height:100%}
+#hero .ring{width:150px;height:150px;border-radius:50%;border:1px solid rgba(233,206,150,.55);display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:26px;box-shadow:0 0 40px rgba(233,206,150,.15) inset}
+#hero .ring::after{content:"";position:absolute;inset:8px;border-radius:50%;border:1px dashed rgba(233,206,150,.35)}
+#hero .mono{font-size:58px;color:#ead2a0;line-height:1}
+#hero h1{font-size:64px;color:#f6ecd6;line-height:1.05;text-shadow:0 0 18px rgba(255,220,160,.35)}
+#hero p{letter-spacing:.32em;text-transform:uppercase;font-size:13px;margin-top:14px;color:#cdbf9f}
+.chev{position:absolute;bottom:42px;left:50%;transform:translateX(-50%);width:34px}
+.chev svg{display:block;margin-top:-10px}
+
+/* frames */
+.frame{position:relative;margin:10px auto;width:300px;padding:70px 26px 64px}
+.frame>svg.bg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.frame>*:not(.bg):not(.hyd){position:relative;z-index:2}
+.names{font-size:62px;line-height:.95;color:var(--ink)}
+.names .amp{display:block;font-size:40px;margin:2px 0;color:var(--blue2)}
+.daterow{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:22px;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.daterow b{font-weight:500;font-size:46px;letter-spacing:0;color:var(--ink);border-left:1px solid var(--ink);border-right:1px solid var(--ink);padding:0 14px;line-height:1}
+.year{font-size:30px;letter-spacing:.2em;margin-top:12px}
+.hyd{position:absolute;z-index:3;pointer-events:none}
+
+/* calendar */
+.cal{width:300px;margin:0 auto;display:grid;grid-template-columns:repeat(7,1fr);gap:6px 0;font-size:17px}
+.cal .wd{font-size:13px;letter-spacing:.06em;color:var(--muted);padding-bottom:8px}
+.cal span{height:36px;display:flex;align-items:center;justify-content:center;position:relative}
+.cal .hl{color:#fff;font-weight:600;z-index:0}
+.cal .hl svg{position:absolute;width:40px;height:40px;left:50%;top:50%;transform:translate(-50%,-52%);z-index:-1}
+
+/* program */
+#program{padding-bottom:30px}
+#program svg.path{position:absolute;left:0;top:120px;width:100%;height:760px;z-index:0}
+.prog{position:relative;height:760px;z-index:1;max-width:390px;margin:0 auto}
+.ev{position:absolute;width:150px;text-align:center}
+.ev .t{font-size:30px;font-weight:500}
+.ev .n{font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.ev svg{width:58px;height:58px;stroke:#6d7590;fill:none;stroke-width:1.2;margin-bottom:4px}
+
+.venue-name{font-size:34px;letter-spacing:.08em;font-weight:500;margin:6px 0 10px}
+.cd{display:flex;justify-content:center;gap:12px;margin-top:6px}
+.cd div{width:64px}
+.cd b{display:flex;width:62px;height:62px;border-radius:50%;border:1px solid #a7b3cf;align-items:center;justify-content:center;font-size:25px;font-weight:500;background:#ffffff88}
+.cd small{display:block;font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.06em}
+.wave{height:34px;margin:46px -26px 0;background:radial-gradient(18px 12px at 18px 0,transparent 98%,var(--dusty) 100%) 0 0/36px 17px repeat-x,linear-gradient(var(--dusty),var(--dusty)) 0 17px/100% 17px no-repeat;opacity:.8}
+.swatch{display:flex;justify-content:center;gap:10px;margin-top:18px}
+.swatch i{width:30px;height:30px;border-radius:50%;box-shadow:0 2px 6px #0002;border:2px solid #fff}
+
+/* rsvp */
+form{text-align:left;width:100%;max-width:320px;margin:0 auto;font-size:18px}
+form label.q{display:block;margin:18px 0 8px;color:#46506e}
+form input[type=text],form textarea{width:100%;border-radius:24px;border:1px solid #b8c2da;background:#ffffffaa;padding:12px 18px;font:inherit;font-size:17px;color:var(--ink);outline:none}
+form textarea{border-radius:18px;min-height:70px;resize:vertical}
+form input:focus,form textarea:focus{border-color:var(--blue)}
+.radio{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:17px;cursor:pointer}
+.radio input{appearance:none;width:20px;height:20px;border-radius:50%;border:1px solid #8c96b3;display:grid;place-items:center;margin:0;flex:none}
+.radio input:checked::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--blue)}
+.stepper{display:inline-flex;align-items:center;border:1px solid #b8c2da;border-radius:24px;overflow:hidden;background:#ffffffaa}
+.stepper button{width:44px;height:42px;border:0;background:none;font-size:22px;color:var(--blue);cursor:pointer}
+.stepper span{min-width:34px;text-align:center;font-size:19px}
+form .btn{display:block;margin:28px auto 0}
+.thanks{display:none;padding:20px 0}
+.thanks.on{display:block}
+.err{color:#b04040;font-size:16px;margin-top:10px;min-height:20px;text-align:center}
+
+.sign{font-size:52px;line-height:1.05}
+footer{padding:20px 20px 40px;text-align:center;font-size:14px;color:var(--muted)}
+
+/* music button */
+#mus{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:48px;height:48px;border-radius:50%;background:#ffffffd9;border:1px solid #c9d0e2;box-shadow:0 6px 18px rgba(0,0,0,.15);z-index:40;display:none;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(6px)}
+#mus svg{width:22px;height:22px;fill:var(--blue)}
+#mus.on svg{animation:spin 6s linear infinite}
+#mus:not(.on)::after{content:"";position:absolute;width:30px;height:2px;background:var(--blue);transform:rotate(-45deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* envelope */
+#env{position:fixed;inset:0;z-index:50;overflow:hidden;cursor:pointer;background:radial-gradient(110% 80% at 50% 45%,#fbfaf7 0%,#eeebe4 70%,#e3dfd6 100%)}
+#env .stage{position:absolute;left:50%;top:0;width:100%;max-width:440px;height:100%;transform:translateX(-50%);z-index:2}
+#env .emboss{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+#env .flap{position:absolute;left:-5%;width:110%;top:0;height:46%;transform-origin:50% 0;z-index:3}
+#env .garland{position:absolute;left:0;width:100%;top:calc(46% - 70px);height:140px;z-index:4}
+#env .seal{position:absolute;left:50%;top:46%;width:120px;height:120px;margin:-60px 0 0 -60px;z-index:6}
+#env .hint{position:absolute;bottom:calc(9% + env(safe-area-inset-bottom));width:100%;text-align:center;font-size:15px;letter-spacing:.24em;text-transform:uppercase;color:#8d8a80;z-index:6}
+#env .hint b{display:block;font-family:"Great Vibes",cursive;font-weight:400;font-size:34px;letter-spacing:0;text-transform:none;color:#8d8577;margin-bottom:8px}
+#env canvas{position:absolute;inset:0;width:100%;height:100%;z-index:8;pointer-events:none}
+#env .inner{position:absolute;inset:0;z-index:1;background:linear-gradient(#d9dde6,#eef0f4 40%,#f4f2ee)}
+#env .base{position:absolute;inset:0;z-index:1}
+</style>
+</head>
+<body class="locked">
+
+<div id="env">
+  <div class="inner"></div>
+  <div class="stage">
+    <svg class="emboss" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice"><g fill="none" stroke="#cfcac0" stroke-width="1.1" id="embossG"></g></svg>
+    <svg class="flap" viewBox="0 0 430 390" preserveAspectRatio="none"><defs><linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f9f8f5"/><stop offset="1" stop-color="#ebe7df"/></linearGradient></defs><path d="M0 0H430V250Q215 420 0 250Z" fill="url(#fl)" stroke="#d8d3c9"/></svg>
+    <svg class="garland" viewBox="0 0 390 140" preserveAspectRatio="none" id="garland"></svg>
+    <svg class="seal" viewBox="0 0 120 120" id="seal">
+      <defs><radialGradient id="wax" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#f6dfb2"/><stop offset=".55" stop-color="#e2bd7d"/><stop offset="1" stop-color="#b98d4a"/></radialGradient>
+      <filter id="ds" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#6a5a3a" flood-opacity=".35"/></filter></defs>
+      <path id="sealBlob" fill="url(#wax)" filter="url(#ds)"/>
+      <circle cx="60" cy="60" r="38" fill="none" stroke="#c89e5d" stroke-width="2.5"/>
+      <circle cx="60" cy="60" r="34" fill="none" stroke="#fae8c4" stroke-width="1" opacity=".7"/>
+      <text x="60" y="70" text-anchor="middle" font-family="Great Vibes" font-size="30" fill="#a77d3e" stroke="#f8e6c0" stroke-width=".5" data-c="monogram"></text>
+    </svg>
+    <div class="hint"><b data-c="couple"></b>ачуу үчүн басыңыз</div>
+  </div>
+  <canvas id="spark"></canvas>
+</div>
+
+<button id="mus" aria-label="Музыка"><svg viewBox="0 0 24 24"><path d="M9 3v10.6A4 4 0 1 0 11 17V7h6V3z"/></svg></button>
+<audio id="audio" loop preload="auto"></audio>
+
+<div id="content">
+  <section id="hero">
+    <canvas id="stars"></canvas>
+    <div class="ring rv"><span class="mono script" data-c="monogram"></span></div>
+    <h1 class="script rv">Чакыруу</h1>
+    <p class="rv" data-c="dateLine"></p>
+    <div class="chev" id="chev"></div>
+  </section>
+
+  <section id="names">
+    <div class="frame rv">
+      <svg class="bg" viewBox="0 0 300 460" preserveAspectRatio="none"></svg>
+      <div class="hyd" data-seed="3" data-r="70" style="left:-58px;top:-40px"></div>
+      <div class="hyd" data-seed="9" data-r="62" style="right:-74px;bottom:-62px"></div>
+      <div class="names script"><span data-c="groom"></span><span class="amp">&amp;</span><span data-c="bride"></span></div>
+      <div class="daterow"><span data-c="weekday"></span><b data-c="day"></b><span data-c="monthName"></span></div>
+      <div class="year" data-c="year"></div>
+    </div>
+  </section>
+
+  <section id="text">
+    <div class="frame rv" style="padding:64px 28px 60px">
+      <svg class="bg" viewBox="0 0 300 460" preserveAspectRatio="none"></svg>
+      <h2 class="rv" data-c="greeting"></h2>
+      <p class="lead rv" data-c="text"></p>
+      <p class="lead rv" style="margin-top:14px;font-style:italic" data-c="text2"></p>
+    </div>
+  </section>
+
+  <section id="calendar">
+    <h2 class="rv" style="font-size:56px" data-c="calTitle"></h2>
+    <div class="cal rv" id="cal"></div>
+    <a class="btn ghost rv" id="ics" style="margin-top:28px" href="#">Календарга кошуу</a>
+  </section>
+
+  <section id="program">
+    <h2 class="rv">Той программасы</h2>
+    <svg class="path" viewBox="0 0 390 760" preserveAspectRatio="xMidYMin meet">
+      <path id="ppath" d="M70 0 C 70 120, 320 90, 300 210 S 70 300, 90 420 S 330 500, 300 620 S 160 720, 195 760" fill="none" stroke="#9aa4c0" stroke-width="1.3"/>
+      <g id="pheart"><path d="M0 6 C -14 -6,-10 -18,0 -10 C 10 -18,14 -6,0 6Z" transform="scale(1.4)" fill="#2f4ea8"/></g>
+    </svg>
+    <div class="prog" id="prog"></div>
+  </section>
+
+  <section id="venue">
+    <p class="cap rv" data-c="venueType"></p>
+    <div class="venue-name rv" data-c="venue"></div>
+    <p class="lead rv" data-c="address"></p>
+    <a class="btn rv" id="map" target="_blank" rel="noopener" style="margin-top:22px">Картаны ачуу</a>
+  </section>
+
+  <section id="countdown">
+    <h2 class="rv">Тойго чейин:</h2>
+    <div class="cd rv"><div><b id="cdD">0</b><small>Күн</small></div><div><b id="cdH">0</b><small>Саат</small></div><div><b id="cdM">0</b><small>Мүнөт</small></div><div><b id="cdS">0</b><small>Секунд</small></div></div>
+    <div class="wave"></div>
+  </section>
+
+  <section id="details">
+    <h2 class="rv">Дресс-код</h2>
+    <p class="lead rv" data-c="dress"></p>
+    <div class="swatch rv" id="swatch"></div>
+    <div class="hyd" data-seed="21" data-r="66" style="right:-46px;top:150px"></div>
+  </section>
+
+  <section id="rsvp">
+    <h2 class="rv">Конок анкетасы</h2>
+    <p class="cap rv" style="font-size:12px;letter-spacing:.18em" data-c="deadline"></p>
+    <form class="rv" id="form" novalidate>
+      <label class="q" for="fName">Сиздин атыңыз:</label>
+      <input type="text" id="fName" name="name" placeholder="Аты-жөнүңүз" autocomplete="name">
+      <label class="q">Тойго катыша аласызбы?</label>
+      <label class="radio"><input type="radio" name="attend" value="Ооба, катышам" checked>Албетте, катышам</label>
+      <label class="radio"><input type="radio" name="attend" value="Катыша албайм">Тилекке каршы, катыша албайм</label>
+      <div id="guestsBox">
+        <label class="q">Канча киши келесиздер?</label>
+        <div class="stepper"><button type="button" id="gMinus">−</button><span id="gCount">1</span><button type="button" id="gPlus">+</button></div>
+      </div>
+      <label class="q" for="fMsg">Каалоо-тилегиңиз (милдеттүү эмес):</label>
+      <textarea id="fMsg" name="msg"></textarea>
+      <div class="err" id="err"></div>
+      <button class="btn" type="submit" id="send">Жиберүү</button>
+    </form>
+    <div class="thanks" id="thanks"><h2>Рахмат!</h2><p class="lead">Жообуңуз жөнөтүлдү</p></div>
+  </section>
+
+  <section id="closing" style="padding-bottom:30px">
+    <p class="lead rv" data-c="closing"></p>
+    <div class="sign script rv" style="margin-top:10px"><span data-c="groom"></span><br><span style="color:var(--blue2)">&amp;</span><br><span data-c="bride"></span></div>
+    <svg class="rv" width="64" height="58" viewBox="-22 -22 44 40" style="margin:26px auto 0;display:block"><path d="M0 14 C -26 -4,-18 -26,0 -12 C 18 -26,26 -4,0 14Z" fill="#2f4ea8"/></svg>
+    <p class="rv" style="margin-top:14px;font-style:italic;font-size:34px">Сизди күтөбүз!</p>
+  </section>
+  <footer data-c="footer"></footer>
+</div>
+
+<script>
+const RENDER=/render=1/.test(location.search);
+if(RENDER){document.body.classList.add('render');document.body.classList.remove('locked')}
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+function rng(seed){let s=seed*9301+49297;return()=>{s=(s*9301+49297)%233280;return s/233280}}
+const NS='http://www.w3.org/2000/svg';
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
+const C=CONFIG, WED=new Date(C.date), DAY=+C.date.slice(8,10), MON=+C.date.slice(5,7), YEAR=+C.date.slice(0,4);
+const sub=s=>s.replace(/\{groom\}/g,C.groom).replace(/\{bride\}/g,C.bride);
+
+/* ---- fill data ---- */
+const V={...C,couple:`${C.groom} & ${C.bride}`,day:DAY,year:YEAR,text:sub(C.text),text2:sub(C.text2),deadline:C.rsvp.deadline,
+  dateLine:`${String(DAY).padStart(2,'0')} · ${String(MON).padStart(2,'0')} · ${YEAR}`};
+$$('[data-c]').forEach(e=>{const k=e.dataset.c;if(['text','text2','dress'].includes(k))e.innerHTML=V[k];else e.textContent=V[k]??''});
+$('#map').href=C.mapUrl;
+C.colors.forEach(c=>$('#swatch').insertAdjacentHTML('beforeend',`<i style="background:${c}"></i>`));
+
+/* ---- calendar ---- */
+(()=>{const c=$('#cal');['Дш','Шш','Шр','Бш','Жм','Иш','Жк'].forEach(w=>c.insertAdjacentHTML('beforeend',`<span class="wd">${w}</span>`));
+  const first=(new Date(Date.UTC(YEAR,MON-1,1)).getUTCDay()+6)%7, days=new Date(Date.UTC(YEAR,MON,0)).getUTCDate();
+  for(let i=0;i<first;i++)c.insertAdjacentHTML('beforeend','<span></span>');
+  for(let d=1;d<=days;d++)c.insertAdjacentHTML('beforeend',d===DAY?`<span class="hl">${d}<svg viewBox="-22 -22 44 40"><path d="M0 14 C -26 -4,-18 -26,0 -12 C 18 -26,26 -4,0 14Z" fill="#2f4ea8"/></svg></span>`:`<span>${d}</span>`)})();
+
+/* ---- add to calendar (.ics) ---- */
+$('#ics').addEventListener('click',e=>{e.preventDefault();
+  const f=d=>d.toISOString().replace(/[-:]/g,'').replace(/\.\d+/,'');
+  const end=new Date(WED.getTime()+6*3600e3);
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//invite//KG','BEGIN:VEVENT',`UID:${f(WED)}@invite`,`DTSTAMP:${f(new Date())}`,`DTSTART:${f(WED)}`,`DTEND:${f(end)}`,
+    `SUMMARY:${C.groom} & ${C.bride} — үйлөнүү тою`,`LOCATION:${C.venueType} ${C.venue}, ${C.address}`,'BEGIN:VALARM','TRIGGER:-P1D','ACTION:DISPLAY','DESCRIPTION:Эртең той!','END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='toy.ics';a.click();});
+
+/* ---- program ---- */
+(()=>{const ICONS=['<path d="M16 14h10l-2 14a5 5 0 0 1-6 0zM21 32v14M16 46h10M34 14h10l-2 14a5 5 0 0 1-6 0zM39 32v14M34 46h10M24 12l4-5M36 12l4-5"/>','<circle cx="24" cy="34" r="12"/><circle cx="37" cy="34" r="12"/><path d="M20 20l4-6 4 6"/>','<path d="M8 42h44M12 42a18 18 0 0 1 36 0M30 24v-4M27 20h6M14 48h32"/>','<path d="M14 48h32V36H14zM18 36V27h24v9M22 27v-8h16v8M30 19v-6M28 13q2-4 4 0"/>','<path d="M30 10l3 9h9l-7 6 3 9-8-5-8 5 3-9-7-6h9z"/><path d="M14 46q16-10 32 0"/>'];
+  const POS=[[150,0],[20,170],[205,330],[22,490],[200,640]];
+  C.program.slice(0,5).forEach(([t,n],i)=>$('#prog').insertAdjacentHTML('beforeend',`<div class="ev rv" style="left:${POS[i][0]}px;top:${POS[i][1]}px"><svg viewBox="0 0 60 60">${ICONS[i]}</svg><div class="t">${t}</div><div class="n">${n}</div></div>`));})();
+
+/* ---- hydrangeas ---- */
+function hydrangea(div){const R=+div.dataset.r,r=rng(+div.dataset.seed),S=R*2.6;
+  const svg=el('svg',{viewBox:`${-S/2} ${-S/2} ${S} ${S}`,width:S,height:S},div);
+  for(let i=0;i<5;i++){const a=r()*Math.PI*2,d=R*.85;const g=el('g',{transform:`translate(${Math.cos(a)*d} ${Math.sin(a)*d}) rotate(${a*57.3+90})`},svg);
+    el('path',{d:`M0 ${-R*.5} C ${R*.32} ${-R*.2}, ${R*.25} ${R*.35}, 0 ${R*.5} C ${-R*.25} ${R*.35}, ${-R*.32} ${-R*.2}, 0 ${-R*.5}Z`,fill:['#5d7f4a','#6f9455','#4e6e3d'][i%3],opacity:.9},g);
+    el('path',{d:`M0 ${-R*.45}V${R*.45}`,stroke:'#3d5a2e','stroke-width':.8},g);}
+  for(let i=0,n=Math.round(R*1.1);i<n;i++){const a=r()*Math.PI*2,d=Math.sqrt(r())*R*.92,x=Math.cos(a)*d,y=Math.sin(a)*d,s=7+r()*5;
+    const cols=['#1f3f9e','#2c52b8','#3f67c9','#5b82d6','#7c9ee2','#a5bdee'];const c=cols[Math.min(5,Math.floor((d/R*.6+r()*.5)*5))];
+    const g=el('g',{transform:`translate(${x} ${y}) rotate(${r()*90})`},svg);
+    for(let k=0;k<4;k++)el('ellipse',{cx:0,cy:-s*.55,rx:s*.42,ry:s*.58,fill:c,stroke:'#16307f','stroke-width':.35,transform:`rotate(${k*90})`},g);
+    el('circle',{r:1.4,fill:'#dfe8ff'},g);}}
+$$('.hyd').forEach(hydrangea);
+
+/* ---- scalloped frames ---- */
+$$('.frame>svg.bg').forEach(svg=>{const pts=[];for(let i=0;i<64;i++){const a=i/64*Math.PI*2,k=1+.035*Math.cos(a*8);pts.push([150+Math.cos(a)*138*k,230+Math.sin(a)*218*k])}
+  const d='M'+pts.map(q=>q.map(v=>v.toFixed(1)).join(' ')).join('L')+'Z';
+  el('path',{d,fill:'#f6f2ea',stroke:'#d7d0c2','stroke-width':10,'stroke-dasharray':'2 3'},svg);
+  el('path',{d,fill:'#cfdcf1',transform:'translate(150 230) scale(.9) translate(-150 -230)'},svg);
+  el('path',{d,fill:'none',stroke:'#fff','stroke-width':1.5,opacity:.8,transform:'translate(150 230) scale(.86) translate(-150 -230)'},svg);});
+
+/* ---- chevrons ---- */
+$('#chev').innerHTML=[0,1,2].map(i=>`<svg viewBox="0 0 34 18" width="34" height="18"><path d="M3 3l14 12L31 3" fill="none" stroke="#e6d3a6" stroke-width="1.6" opacity="${.35+i*.3}"/></svg>`).join('');
+
+/* ---- envelope parts ---- */
+(()=>{const g=$('#embossG'),r=rng(5);
+  for(let i=0;i<14;i++){const a=i/14*Math.PI*2;el('path',{d:`M195 600 q ${Math.cos(a)*60} ${Math.sin(a)*60} ${Math.cos(a+.6)*110} ${Math.sin(a+.6)*90}`},g);el('circle',{cx:195+Math.cos(a)*120,cy:600+Math.sin(a)*95,r:6+r()*4},g)}
+  el('circle',{cx:195,cy:600,r:40},g);el('circle',{cx:195,cy:600,r:22},g);
+  const gl=$('#garland');for(let side=0;side<2;side++)for(let i=0;i<46;i++){const t=i/45,x=side?195+t*205:195-t*205,y=70-Math.sin(t*Math.PI*.85)*28+t*30,s=9+Math.sin(i*1.7)*3;
+    el('circle',{cx:x,cy:y,r:s,fill:'#dfe3ea',stroke:'#b6bfcd','stroke-width':.8,opacity:.92},gl);el('circle',{cx:x+Math.sin(i)*3,cy:y-2,r:s*.45,fill:'none',stroke:'#9aa6ba','stroke-width':.6},gl);if(i%3==0)el('circle',{cx:x,cy:y+s+3,r:1.6,fill:'#aab3c3'},gl)}
+  const pts=[];for(let i=0;i<40;i++){const a=i/40*Math.PI*2,rr=52+Math.sin(i*2.3)*2.5+Math.cos(i*5.1)*1.8;pts.push(`${(60+Math.cos(a)*rr).toFixed(1)} ${(60+Math.sin(a)*rr).toFixed(1)}`)}
+  $('#sealBlob').setAttribute('d','M'+pts.join('L')+'Z');})();
+
+/* ---- canvases (sized once / on resize) ---- */
+function fit(cv){const w=cv.clientWidth*2,h=cv.clientHeight*2;if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h}return[w,h]}
+const sc=$('#spark'),sx=sc.getContext('2d');
+const SP=(()=>{const r=rng(11),a=[];for(let i=0;i<170;i++)a.push({ang:r()*Math.PI*2,sp:.25+r()*.9,sz:1+r()*3.2,dl:r()*.35,tw:r()*6,up:r()});return a})();
+function drawSpark(p){const[W,H]=fit(sc);sx.clearRect(0,0,W,H);if(p<=0||p>2.2)return;const cx=W/2,cy=H*.46,R=Math.min(W,880);
+  for(const s of SP){const q=p-s.dl;if(q<=0)continue;const d=(1-Math.exp(-q*2.6))*R*.55*s.sp,x=cx+Math.cos(s.ang)*d,y=cy+Math.sin(s.ang)*d*.9-q*q*30*s.up;
+    const al=clamp(1-q/1.7)*(.6+.4*Math.sin(q*12+s.tw));if(al<=0)continue;const z=s.sz*2;
+    sx.globalAlpha=al;sx.fillStyle='#ffd27a';sx.shadowColor='#ffb84d';sx.shadowBlur=12;
+    sx.beginPath();sx.moveTo(x,y-z*2.2);sx.quadraticCurveTo(x,y,x+z*2.2,y);sx.quadraticCurveTo(x,y,x,y+z*2.2);sx.quadraticCurveTo(x,y,x-z*2.2,y);sx.quadraticCurveTo(x,y,x,y-z*2.2);sx.fill()}
+  const gl=clamp(1-p/.9);if(gl>0){const g=sx.createRadialGradient(cx,cy,0,cx,cy,R*.4);g.addColorStop(0,`rgba(255,214,140,${.75*gl})`);g.addColorStop(1,'rgba(255,214,140,0)');sx.globalAlpha=1;sx.shadowBlur=0;sx.fillStyle=g;sx.fillRect(0,0,W,H)}}
+
+function setEnvelope(o){const env=$('#env');
+  const sealP=clamp(o/.7);$('#seal').style.transform=`scale(${(1+ease(sealP)*.35).toFixed(3)}) translateY(${(-ease(sealP)*40).toFixed(1)}px)`;
+  $('#seal').style.opacity=(1-clamp((o-.35)/.45)).toFixed(3);
+  const gp=clamp((o-.1)/.6);$('#garland').style.opacity=(1-gp).toFixed(3);$('#garland').style.transform=`translateY(${(-gp*30).toFixed(1)}px)`;
+  const fp=ease(clamp((o-.25)/.9));$('.flap').style.transform=`perspective(900px) rotateX(${(fp*175).toFixed(1)}deg)`;$('.flap').style.opacity=(1-clamp((o-.75)/.4)).toFixed(3);
+  $('.hint').style.opacity=(1-clamp(o/.3)).toFixed(3);
+  $('.emboss').style.transform=`translateY(${(ease(clamp((o-.5)/1.2))*120).toFixed(1)}px)`;
+  drawSpark(o-.2);
+  const fade=clamp((o-1.55)/.55);env.style.opacity=(1-fade).toFixed(3);env.style.display=fade>=1?'none':'block';
+  return fade>=1;}
+
+/* ---- reveals, stars, heart, countdown ---- */
+let rvs=[];const measure=()=>{rvs.forEach(r=>r.e.style.transform='');rvs=$$('.rv').map(e=>({e,top:e.getBoundingClientRect().top+scrollY}))};
+const ppath=$('#ppath'),plen=ppath.getTotalLength();let progTop=0;
+const stars=(()=>{const r=rng(2),a=[];for(let i=0;i<90;i++)a.push([r(),r(),r()*1.6+.3,r()*6]);return a})();
+const scv=$('#stars'),scx=scv.getContext('2d');
+function drawStars(t){const[W,H]=fit(scv);scx.clearRect(0,0,W,H);for(const[x,y,s,p]of stars){scx.globalAlpha=.25+.6*(.5+.5*Math.sin(t*1.5+p));scx.fillStyle='#fbe7bd';scx.beginPath();scx.arc(x*W,y*H,s*2,0,7);scx.fill()}}
+let lastSec=-1;
+function countdown(now){let s=Math.max(0,Math.floor((WED-now)/1000));if(s===lastSec)return;lastSec=s;
+  $('#cdD').textContent=Math.floor(s/86400);s%=86400;$('#cdH').textContent=Math.floor(s/3600);s%=3600;$('#cdM').textContent=Math.floor(s/60);$('#cdS').textContent=s%60;}
+function update(scroll,t,now){const vh=innerHeight;
+  if(RENDER)$('#content').style.transform=`translateY(${-scroll}px)`;
+  for(const r of rvs){const y=r.top-scroll,k=ease(clamp((vh-y)/(vh*.22)));r.e.style.opacity=k.toFixed(3);r.e.style.transform=`translateY(${((1-k)*34).toFixed(1)}px)`}
+  const pf=clamp((scroll+vh*.55-(progTop+120))/760),pt=ppath.getPointAtLength(pf*plen);$('#pheart').setAttribute('transform',`translate(${pt.x} ${pt.y})`);
+  $('#chev').style.transform=`translateX(-50%) translateY(${(Math.sin(t*3)*5).toFixed(1)}px)`;
+  if(scroll<vh*1.1)drawStars(t);countdown(now);}
+function init(){measure();progTop=$('#program').getBoundingClientRect().top+scrollY}
+init();addEventListener('resize',init);document.fonts&&document.fonts.ready.then(init);
+
+/* ---- music ---- */
+const audio=$('#audio'),mus=$('#mus');audio.src=C.music;audio.volume=.7;
+function setMus(on){mus.classList.toggle('on',on);on?audio.play().catch(()=>mus.classList.remove('on')):audio.pause()}
+mus.addEventListener('click',()=>setMus(audio.paused));
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&!audio.paused){audio.pause();mus.dataset.resume=1}else if(!document.hidden&&mus.dataset.resume){delete mus.dataset.resume;setMus(true)}});
+
+/* ---- RSVP ---- */
+let guests=1;const gc=$('#gCount');
+$('#gMinus').onclick=()=>{guests=Math.max(1,guests-1);gc.textContent=guests};
+$('#gPlus').onclick=()=>{guests=Math.min(20,guests+1);gc.textContent=guests};
+$$('input[name=attend]').forEach(r=>r.onchange=()=>{$('#guestsBox').style.display=$('input[name=attend]:checked').value.startsWith('Ооба')?'':'none'});
+$('#form').addEventListener('submit',async e=>{e.preventDefault();const err=$('#err');err.textContent='';
+  const name=$('#fName').value.trim();if(!name){err.textContent='Атыңызды жазыңыз';$('#fName').focus();return}
+  const attend=$('input[name=attend]:checked').value,yes=attend.startsWith('Ооба'),msg=$('#fMsg').value.trim();
+  const data={name,attend,guests:yes?guests:0,msg};
+  const btn=$('#send');btn.disabled=true;btn.textContent='Жөнөтүлүүдө…';
+  try{
+    if(C.rsvp.sheetUrl){await fetch(C.rsvp.sheetUrl,{method:'POST',mode:'no-cors',body:new URLSearchParams(data)})}
+    else{const txt=`Салам! Мен ${name}.\n${C.groom} & ${C.bride} тою: ${attend}${yes?`, ${guests} киши`:''}.${msg?`\n${msg}`:''}`;
+      location.href=`https://wa.me/${C.rsvp.whatsapp}?text=${encodeURIComponent(txt)}`}
+    $('#form').style.display='none';$('#thanks').classList.add('on');
+  }catch(_){err.textContent='Интернет байланышын текшерип, кайра аракет кылыңыз';btn.disabled=false;btn.textContent='Жиберүү'}});
+
+/* ---- deterministic render API (for the video teaser) ---- */
+window.__layout={height:()=>$('#content').scrollHeight,vh:()=>innerHeight};
+window.__render=(t,openAt,scroll)=>{setEnvelope(t-openAt);update(scroll,t,new Date('2026-11-13T12:00:00+06:00').getTime()+t*1000)};
+
+/* ---- live mode ---- */
+if(!RENDER){let tapAt=null,done=false;const t0=performance.now();
+  $('#env').addEventListener('click',()=>{if(tapAt!==null)return;tapAt=performance.now();setMus(true);mus.style.display='flex'});
+  setEnvelope(-1);
+  (function loop(){const now=performance.now(),t=(now-t0)/1000;
+    if(!done){if(tapAt!==null){if(setEnvelope((now-tapAt)/1000)){done=true;document.body.classList.remove('locked');init()}}
+      else{$('#seal').style.transform=`scale(${(1+Math.sin(t*2.4)*.03).toFixed(3)})`}}
+    update(scrollY,t,Date.now());requestAnimationFrame(loop)})();}
+</script>
+</body>
+</html>
