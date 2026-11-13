@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Варианты приглашения</title>
+<title>Шаблоны приглашений</title>
 <meta name="robots" content="noindex">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
@@ -10,30 +10,35 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif;padding:40px 16px 60px}
 h1{font-family:"Great Vibes",cursive;font-weight:400;font-size:56px;text-align:center;line-height:1.1}
-.sub{text-align:center;color:var(--muted);font-size:19px;margin:8px auto 36px;max-width:560px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;max-width:1150px;margin:0 auto}
-.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
-.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.12)}
-.shots{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.shots img{width:100%;aspect-ratio:390/844;object-fit:cover;border-radius:12px;display:block;background:#ddd}
-.card h2{font-size:26px;font-weight:600;margin:14px 4px 2px}
-.card p{font-size:17px;color:var(--muted);margin:0 4px 12px;flex:1}
-.dots{display:flex;gap:6px;margin:0 4px 14px}
-.dots i{width:18px;height:18px;border-radius:50%;border:1px solid var(--line)}
-.open{align-self:flex-start;margin:0 4px 4px;font-size:15px;letter-spacing:.14em;text-transform:uppercase;border:1px solid currentColor;border-radius:30px;padding:9px 20px}
+.sub{text-align:center;color:var(--muted);font-size:19px;margin:8px auto 36px;max-width:600px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;max-width:1180px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;display:flex;flex-direction:column}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-decoration:none}
+.shots img{width:100%;aspect-ratio:390/844;object-fit:cover;border-radius:12px;display:block;background:#ddd;transition:transform .25s}
+.shots:hover img{transform:translateY(-3px)}
+.card h2{font-size:28px;font-weight:600;margin:14px 4px 2px}
+.card p{font-size:17px;color:var(--muted);margin:0 4px 10px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 4px 14px}
+.tags span{font-size:13px;border:1px solid var(--line);border-radius:20px;padding:3px 10px;color:var(--muted)}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 4px 4px}
+.open{font-size:15px;letter-spacing:.14em;text-transform:uppercase;border:1px solid currentColor;border-radius:30px;padding:9px 20px;color:inherit;text-decoration:none}
+.dots{display:flex;gap:6px}
+.dots a{width:22px;height:22px;border-radius:50%;border:2px solid var(--card);box-shadow:0 0 0 1px var(--line)}
 </style></head>
 <body>
-<h1>Выберите оформление</h1>
-<p class="sub">Все четыре варианта — один и тот же сайт с вашими данными, меняется только стиль. Нажмите, чтобы открыть приглашение целиком.</p>
+<h1>Выберите шаблон</h1>
+<p class="sub">Четыре разных шаблона: у каждого своё открытие, своя подача и свой стиль. Данные во всех шаблонах общие, поэтому меняются в одном месте.</p>
 <div class="grid" id="grid"></div>
 <script>
-const V=[
- ['blue','Гортензия','Голубые гортензии, золотая сургучная печать, ночное небо',['#2f4ea8','#7f9ad6','#cfdcf1','#f7f4ee']],
- ['pudra','Пудра','Нежно-розовые цветы, пыльная роза и бордовый вечер',['#b0606f','#e1a3ae','#f4dfe2','#fbf6f2']],
- ['emerald','Изумруд и золото','Изумрудный с золотом и кыргызский орнамент «кочкор мүйүз»',['#1f5c47','#a8833f','#dde9e1','#f6f2e7']],
- ['classic','Классика','Чёрное, белое и золото, белые цветы, чёрная печать',['#1e1e22','#a3874f','#efebe3','#faf8f4']]];
-document.getElementById('grid').innerHTML=V.map(([k,t,d,c])=>`<a class="card" href="./?theme=${k}">
- <div class="shots"><img src="thumbs/${k}_1.jpg" alt="${t}: начало" loading="lazy"><img src="thumbs/${k}_2.jpg" alt="${t}: имена" loading="lazy"></div>
- <h2>${t}</h2><p>${d}</p><div class="dots">${c.map(x=>`<i style="background:${x}"></i>`).join('')}</div><span class="open">Открыть</span></a>`).join('');
+const T=[
+ {href:'./',img:'blue',t:'Конверт',d:'Классика жанра: конверт с сургучной печатью и золотыми искрами, цветы, прокрутка вниз.',tags:['конверт','цветы','4 цвета'],
+  colors:[['blue','#2f4ea8'],['pudra','#b0606f'],['emerald','#1f5c47'],['classic','#1e1e22']]},
+ {href:'yurt/',img:'yurt',t:'Боз үй',d:'Национальный стиль: гость «открывает» түндүк юрты и видит небо, дальше идут шырдак-орнаменты и кочкор мүйүз.',tags:['кыргызский стиль','түндүк','орнамент']},
+ {href:'stories/',img:'stories',t:'Сторис',d:'Как сторис в Instagram: полноэкранные слайды с полосками прогресса, листаются касанием, удержание ставит на паузу.',tags:['слайды','современный','фото на фоне']},
+ {href:'journal/',img:'journal',t:'Журнал',d:'Минимализм в духе модного журнала: занавес с именами, крупная типографика, место под фото пары, бегущая строка.',tags:['минимализм','фото пары','чёрно-белый']}];
+document.getElementById('grid').innerHTML=T.map(x=>`<div class="card">
+ <a class="shots" href="${x.href}"><img src="thumbs/${x.img}_1.jpg" alt="${x.t}: открытие" loading="lazy"><img src="thumbs/${x.img}_2.jpg" alt="${x.t}: внутри" loading="lazy"></a>
+ <h2>${x.t}</h2><p>${x.d}</p><div class="tags">${x.tags.map(s=>`<span>${s}</span>`).join('')}</div>
+ <div class="row"><a class="open" href="${x.href}">Открыть</a>${x.colors?`<div class="dots">${x.colors.map(([k,c])=>`<a href="./?theme=${k}" title="${k}" style="background:${c}"></a>`).join('')}</div>`:''}</div></div>`).join('');
 </script>
 </body></html>

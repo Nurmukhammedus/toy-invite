@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ky"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2a1410">
+<title>Үйлөнүү тоюна чакыруу</title>
+<meta property="og:title" content="Үйлөнүү тоюна чакыруу">
+<meta property="og:image" content="https://nurmukhammedus.github.io/toy-invite/og.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script>window.INV_BASE='../'</script>
+<script src="../data.js"></script>
+<script src="../common.js"></script>
+<style>
+:root{--felt:#f3e7d0;--felt2:#eadbbd;--red:#8e1f1c;--red2:#b5322b;--dark:#2a1410;--gold:#d6a64f;--ink:#3a201a;--muted:#8a6a58;--sky:#1d2a4d}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--dark);color:var(--ink);font-family:Philosopher,Georgia,serif}
+body.locked{overflow:hidden;height:100vh}
+.disp{font-family:"Yeseva One",Georgia,serif;font-weight:400}
+main{max-width:460px;margin:0 auto;background:var(--felt);position:relative;overflow:hidden;
+  background-image:radial-gradient(rgba(120,80,40,.07) 1px,transparent 1.2px),radial-gradient(rgba(120,80,40,.05) 1px,transparent 1.2px);background-size:7px 7px,11px 11px;background-position:0 0,3px 5px}
+section{padding:60px 26px;text-align:center;position:relative}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+h2{font-family:"Yeseva One",serif;font-weight:400;font-size:34px;color:var(--red);margin-bottom:16px;line-height:1.15}
+.lead{font-size:20px;line-height:1.5}
+.cap{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+.btn{display:inline-block;background:var(--red);color:#fbeedd;border:0;border-radius:6px;padding:14px 30px;font:700 15px Philosopher,serif;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;box-shadow:0 6px 0 #5e1311,0 10px 20px rgba(80,20,10,.25)}
+.btn:active{transform:translateY(3px);box-shadow:0 3px 0 #5e1311}
+.btn.alt{background:transparent;color:var(--red);box-shadow:none;border:2px solid var(--red)}
+.band{height:46px;background:var(--red);position:relative}
+.band svg{position:absolute;inset:0;width:100%;height:100%}
+
+/* opening: inside the yurt */
+#open{position:fixed;inset:0;z-index:50;background:radial-gradient(circle at 50% 42%,#4b2318 0%,#2a1410 55%,#170a07 100%);overflow:hidden;cursor:pointer;transition:opacity 1s ease 1.6s}
+#open svg.uuk{position:absolute;left:50%;top:42%;width:1600px;height:1600px;margin:-800px 0 0 -800px;transition:transform 2.4s cubic-bezier(.6,0,.2,1),opacity 1.6s ease .4s}
+#open .tund{position:absolute;left:50%;top:42%;width:230px;height:230px;margin:-115px 0 0 -115px;transition:transform 2.2s cubic-bezier(.6,0,.2,1),opacity 1.2s ease .5s}
+#open .sky{position:absolute;left:50%;top:42%;width:200px;height:200px;margin:-100px 0 0 -100px;border-radius:50%;
+  background:radial-gradient(circle,#8fb4e8 0%,#4a6fb0 45%,var(--sky) 100%);transition:transform 2.2s cubic-bezier(.6,0,.2,1)}
+#open .hint{position:absolute;bottom:calc(10% + env(safe-area-inset-bottom));width:100%;text-align:center;color:#e9cfa0;transition:opacity .4s}
+#open .hint b{display:block;font-family:"Yeseva One",serif;font-weight:400;font-size:30px;margin-bottom:10px;color:#f6e4c2}
+#open .hint span{font-size:13px;letter-spacing:.26em;text-transform:uppercase;opacity:.8}
+#open.go .tund{transform:scale(9) rotate(60deg);opacity:0}
+#open.go .sky{transform:scale(14)}
+#open.go svg.uuk{transform:scale(2.4) rotate(30deg);opacity:0}
+#open.go .hint{opacity:0}
+#open.go{opacity:0;pointer-events:none}
+.pulse{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.04)}}
+
+/* hero */
+#hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--sky) 0%,#2c3f6e 35%,var(--felt) 100%);color:#fff7e8;padding-top:40px}
+#hero .emb{width:150px;height:150px;margin-bottom:24px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.3))}
+#hero .names{font-size:58px;line-height:1.05;color:#fff7e8;text-shadow:0 4px 18px rgba(20,20,60,.4)}
+#hero .names i{display:block;font-style:normal;font-size:34px;color:var(--gold);margin:6px 0}
+#hero .cap{color:#f3dfbf;margin-bottom:22px}
+#hero .date{margin-top:26px;font-size:22px;letter-spacing:.2em;color:var(--ink);background:var(--felt);padding:10px 22px;border:2px solid var(--red);border-radius:4px}
+
+/* card with ornamental corners */
+.card{position:relative;background:#fbf3e3;border:2px solid var(--red);padding:42px 24px;margin:0 6px;box-shadow:0 0 0 6px var(--felt),0 0 0 8px var(--gold)}
+.card .cn{position:absolute;width:46px;height:46px;color:var(--red)}
+.cn.tl{left:-4px;top:-4px}.cn.tr{right:-4px;top:-4px;transform:scaleX(-1)}.cn.bl{left:-4px;bottom:-4px;transform:scaleY(-1)}.cn.br{right:-4px;bottom:-4px;transform:scale(-1)}
+
+/* calendar */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;max-width:330px;margin:10px auto 0;font-size:18px}
+.cal span{height:40px;display:flex;align-items:center;justify-content:center;position:relative}
+.cal .wd{font-size:13px;color:var(--muted);height:28px}
+.cal .hl{color:#fff;font-weight:700}
+.cal .hl svg{position:absolute;inset:-4px;width:48px;height:48px;z-index:-1;left:50%;margin-left:-24px}
+.cal .hl{z-index:0}
+
+/* program — kerege lattice timeline */
+.prog{position:relative;max-width:340px;margin:16px auto 0;text-align:left}
+.prog::before{content:"";position:absolute;left:62px;top:8px;bottom:8px;width:16px;
+  background:repeating-linear-gradient(45deg,transparent 0 6px,var(--gold) 6px 8px),repeating-linear-gradient(-45deg,transparent 0 6px,var(--gold) 6px 8px);opacity:.6}
+.pi{display:flex;align-items:center;gap:30px;padding:14px 0;position:relative}
+.pi b{width:52px;text-align:right;font-family:"Yeseva One";font-weight:400;font-size:22px;color:var(--red)}
+.pi i{width:16px;height:16px;transform:rotate(45deg);background:var(--red);border:3px solid var(--felt);box-shadow:0 0 0 2px var(--red);flex:none;margin-left:-2px;position:relative;z-index:1}
+.pi span{font-size:19px}
+
+.tiles{display:flex;justify-content:center;gap:10px;margin-top:10px}
+.tiles div{width:70px;padding:12px 0;background:var(--red);color:#fbeedd;border-radius:4px;box-shadow:inset 0 0 0 2px #b5463c,inset 0 0 0 5px var(--red),inset 0 0 0 6px var(--gold)}
+.tiles b{display:block;font-family:"Yeseva One";font-weight:400;font-size:28px}
+.tiles small{font-size:12px;letter-spacing:.08em}
+.sw{display:flex;justify-content:center;gap:10px;margin-top:20px}
+.sw i{width:34px;height:34px;transform:rotate(45deg);border:2px solid #fff;box-shadow:0 0 0 1px var(--muted)}
+
+form{max-width:330px;margin:0 auto;text-align:left;font-size:18px}
+form label.q{display:block;margin:18px 0 8px;font-weight:700;color:var(--red)}
+form input[type=text],form textarea{width:100%;background:#fffaf0;border:2px solid #d9c3a0;border-radius:6px;padding:12px 14px;font:inherit;color:var(--ink);outline:none}
+form textarea{min-height:70px}
+form input:focus,form textarea:focus{border-color:var(--red)}
+.radio{display:flex;align-items:center;gap:10px;margin:8px 0;cursor:pointer}
+.radio input{appearance:none;width:18px;height:18px;transform:rotate(45deg);border:2px solid var(--red);margin:0 4px;flex:none}
+.radio input:checked{background:var(--red);box-shadow:inset 0 0 0 3px #fffaf0}
+.step{display:inline-flex;align-items:center;border:2px solid #d9c3a0;border-radius:6px;background:#fffaf0}
+.step button{width:44px;height:42px;border:0;background:none;font-size:22px;color:var(--red);cursor:pointer}
+.step span{min-width:30px;text-align:center}
+.err{color:var(--red2);text-align:center;min-height:22px;margin-top:10px}
+form .btn{display:block;margin:20px auto 0}
+.done{display:none}.done.on{display:block}
+
+#mus{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:48px;height:48px;border-radius:50%;border:2px solid var(--gold);background:var(--red);z-index:40;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#mus svg{width:22px;height:22px;fill:#fbeedd}
+#mus.on svg{animation:spin 6s linear infinite}
+#mus:not(.on)::after{content:"";position:absolute;width:30px;height:2px;background:#fbeedd;transform:rotate(-45deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+footer{padding:20px;text-align:center;font-size:14px;color:var(--muted)}
+</style></head>
+<body class="locked">
+
+<div id="open">
+  <svg class="uuk" viewBox="-800 -800 1600 1600" id="uuk"></svg>
+  <div class="sky"></div>
+  <svg class="tund pulse" viewBox="-120 -120 240 240" id="tund"></svg>
+  <div class="hint"><b data-c="couple"></b><span>Түндүктү ачуу үчүн басыңыз</span></div>
+</div>
+<button id="mus" hidden aria-label="Музыка"><svg viewBox="0 0 24 24"><path d="M9 3v10.6A4 4 0 1 0 11 17V7h6V3z"/></svg></button>
+
+<main>
+  <section id="hero">
+    <svg class="emb rv" viewBox="-120 -120 240 240" id="emb"></svg>
+    <p class="cap rv">Үйлөнүү тоюна чакыруу</p>
+    <div class="names disp rv"><span data-c="groom"></span><i>&amp;</i><span data-c="bride"></span></div>
+    <div class="date rv" data-c="dateShort"></div>
+  </section>
+
+  <div class="band"><svg><use href="#bandPat"/></svg></div>
+
+  <section>
+    <div class="card rv">
+      <svg class="cn tl" viewBox="0 0 46 46"><use href="#corner"/></svg><svg class="cn tr" viewBox="0 0 46 46"><use href="#corner"/></svg>
+      <svg class="cn bl" viewBox="0 0 46 46"><use href="#corner"/></svg><svg class="cn br" viewBox="0 0 46 46"><use href="#corner"/></svg>
+      <h2 data-c="greeting"></h2>
+      <p class="lead" data-c="text"></p>
+      <p class="lead" style="margin-top:14px;font-style:italic" data-c="text2"></p>
+    </div>
+  </section>
+
+  <section style="padding-top:20px">
+    <h2 class="rv" data-c="calTitle"></h2>
+    <p class="cap rv"><span data-c="weekday"></span> · <span data-c="time"></span></p>
+    <div class="cal rv" id="cal"></div>
+    <a href="#" class="btn alt rv" data-ics style="margin-top:26px">Календарга кошуу</a>
+  </section>
+
+  <div class="band"><svg><use href="#bandPat"/></svg></div>
+
+  <section>
+    <h2 class="rv">Той программасы</h2>
+    <div class="prog rv" id="prog"></div>
+  </section>
+
+  <section style="background:rgba(142,31,28,.06)">
+    <p class="cap rv" data-c="venueType"></p>
+    <h2 class="rv" style="font-size:36px;margin:8px 0" data-c="venue"></h2>
+    <p class="lead rv" data-c="address"></p>
+    <a class="btn rv" data-map style="margin-top:24px">Картаны ачуу</a>
+  </section>
+
+  <section>
+    <h2 class="rv">Тойго чейин</h2>
+    <div class="tiles rv"><div><b id="cd0">0</b><small>күн</small></div><div><b id="cd1">0</b><small>саат</small></div><div><b id="cd2">0</b><small>мүнөт</small></div><div><b id="cd3">0</b><small>секунд</small></div></div>
+  </section>
+
+  <div class="band"><svg><use href="#bandPat"/></svg></div>
+
+  <section>
+    <h2 class="rv">Дресс-код</h2>
+    <p class="lead rv" data-c="dress"></p>
+    <div class="sw rv" id="sw"></div>
+  </section>
+
+  <section>
+    <h2 class="rv">Конок анкетасы</h2>
+    <p class="cap rv" data-c="deadline" style="margin-bottom:6px"></p>
+    <form class="rv" id="form" novalidate>
+      <label class="q">Сиздин атыңыз</label>
+      <input type="text" name="name" placeholder="Аты-жөнүңүз" autocomplete="name">
+      <label class="q">Тойго катыша аласызбы?</label>
+      <label class="radio"><input type="radio" name="attend" value="yes" checked>Албетте, катышам</label>
+      <label class="radio"><input type="radio" name="attend" value="no">Тилекке каршы, катыша албайм</label>
+      <div data-guests><label class="q">Канча киши келесиздер?</label>
+        <div class="step"><button type="button" data-minus>−</button><span data-count>1</span><button type="button" data-plus>+</button></div></div>
+      <label class="q">Каалоо-тилегиңиз</label>
+      <textarea name="msg" placeholder="милдеттүү эмес"></textarea>
+      <div class="err" data-err></div>
+      <button class="btn" type="submit">Жиберүү</button>
+    </form>
+    <div class="done" id="done"><h2>Рахмат!</h2><p class="lead">Жообуңуз жөнөтүлдү</p></div>
+  </section>
+
+  <section style="padding-bottom:40px">
+    <p class="lead rv" data-c="closing"></p>
+    <div class="disp rv" style="font-size:44px;color:var(--red);margin:10px 0 20px;line-height:1.1"><span data-c="groom"></span> &amp; <span data-c="bride"></span></div>
+    <svg class="rv" viewBox="-120 -120 240 240" width="90" height="90" id="emb2"></svg>
+    <p class="disp rv" style="font-size:30px;margin-top:16px">Сизди күтөбүз!</p>
+  </section>
+  <div class="band"><svg><use href="#bandPat"/></svg></div>
+  <footer data-c="footer"></footer>
+</main>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <!-- кочкор мүйүз (бараньи рога) -->
+    <symbol id="horn" viewBox="0 0 80 44"><path d="M40 42V26M40 26c0-12 10-19 20-15s12 15 3 18-12-5-7-8M40 26c0-12-10-19-20-15s-12 15-3 18 12-5 7-8" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></symbol>
+    <pattern id="bp" width="80" height="46" patternUnits="userSpaceOnUse">
+      <rect width="80" height="46" fill="#8e1f1c"/><use href="#horn" x="0" y="1" width="80" height="44" color="#e8c98a"/>
+      <circle cx="0" cy="23" r="3" fill="#e8c98a"/><circle cx="80" cy="23" r="3" fill="#e8c98a"/>
+    </pattern>
+    <symbol id="bandPat" viewBox="0 0 100 46" preserveAspectRatio="none"><rect width="100%" height="100%" fill="url(#bp)"/></symbol>
+    <symbol id="corner" viewBox="0 0 46 46"><path d="M3 43V3h40" fill="none" stroke="currentColor" stroke-width="3"/><path d="M10 36c0-14 4-22 12-24s12 4 8 9-10 1-7-3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<script>
+const $=s=>document.querySelector(s);
+/* fix band pattern: draw directly to avoid stretched symbol */
+document.querySelectorAll('.band svg').forEach(s=>s.innerHTML='<rect width="100%" height="100%" fill="url(#bp)"/>');
+INV.fill();
+
+/* tunduk */
+function tunduk(svg,{felt='#d6a64f',bars='#8e1f1c',bg='none'}={}){
+  let h=`<circle r="104" fill="${bg}" stroke="${felt}" stroke-width="12"/><circle r="92" fill="none" stroke="${bars}" stroke-width="3"/>`;
+  for(const x of [-34,0,34]){const y=Math.sqrt(92*92-x*x);
+    h+=`<path d="M${x} ${-y} Q ${x*1.6} 0 ${x} ${y}" fill="none" stroke="${bars}" stroke-width="9" stroke-linecap="round"/>`;
+    h+=`<path d="M${-y} ${x} Q 0 ${x*1.6} ${y} ${x}" fill="none" stroke="${bars}" stroke-width="9" stroke-linecap="round"/>`;}
+  for(let i=0;i<24;i++){const a=i/24*Math.PI*2;h+=`<circle cx="${Math.cos(a)*104}" cy="${Math.sin(a)*104}" r="3.4" fill="${bars}"/>`}
+  svg.innerHTML=h;}
+tunduk($('#tund'),{felt:'#c8954a',bars:'#6b2a14',bg:'rgba(0,0,0,0)'});
+tunduk($('#emb'),{felt:'#d6a64f',bars:'#8e1f1c',bg:'rgba(255,247,232,.12)'});
+tunduk($('#emb2'),{felt:'#d6a64f',bars:'#8e1f1c'});
+/* уук — poles converging to the tunduk */
+(()=>{let h='';for(let i=0;i<48;i++){const a=i/48*Math.PI*2,c=Math.cos(a),s=Math.sin(a);
+  h+=`<line x1="${c*118}" y1="${s*118}" x2="${c*800}" y2="${s*800}" stroke="${i%2?'#8a4a26':'#a35a2c'}" stroke-width="${10+ (i%3)}" stroke-linecap="round"/>`;}
+  h+='<circle r="560" fill="none" stroke="#5a2a16" stroke-width="40" opacity=".5"/>';$('#uuk').innerHTML=h})();
+
+/* calendar with tunduk mark */
+INV.calendar($('#cal'),'<svg viewBox="-120 -120 240 240"><circle r="110" fill="#8e1f1c"/><circle r="92" fill="none" stroke="#d6a64f" stroke-width="10"/></svg>');
+$('#prog').innerHTML=INV.C.program.map(([t,n])=>`<div class="pi"><b>${t}</b><i></i><span>${n}</span></div>`).join('');
+const cols=INV.C.colors&&INV.C.colors.length?INV.C.colors:['#8e1f1c','#d6a64f','#f3e7d0','#1d2a4d','#2a1410'];
+$('#sw').innerHTML=cols.map(c=>`<i style="background:${c}"></i>`).join('');
+INV.countdown((d,h,m,s)=>[d,h,m,s].forEach((v,i)=>$('#cd'+i).textContent=v));
+INV.rsvp($('#form'),()=>{$('#form').style.display='none';$('#done').classList.add('on')});
+const mus=INV.music($('#mus'));
+
+$('#open').addEventListener('click',()=>{const o=$('#open');if(o.classList.contains('go'))return;
+  $('#tund').classList.remove('pulse');o.classList.add('go');mus.start();
+  setTimeout(()=>{document.body.classList.remove('locked');INV.reveal()},1900);
+  setTimeout(()=>o.remove(),2800);});
+</script>
+</body></html>
