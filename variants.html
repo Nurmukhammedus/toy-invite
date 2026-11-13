@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Варианты приглашения</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f1ea;--ink:#2b2b30;--muted:#77736b;--card:#fffdf9;--line:#e3ddd1}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#17171a;--ink:#efece6;--muted:#a19d95;--card:#222226;--line:#34343a}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif;padding:40px 16px 60px}
+h1{font-family:"Great Vibes",cursive;font-weight:400;font-size:56px;text-align:center;line-height:1.1}
+.sub{text-align:center;color:var(--muted);font-size:19px;margin:8px auto 36px;max-width:560px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;max-width:1150px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.12)}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.shots img{width:100%;aspect-ratio:390/844;object-fit:cover;border-radius:12px;display:block;background:#ddd}
+.card h2{font-size:26px;font-weight:600;margin:14px 4px 2px}
+.card p{font-size:17px;color:var(--muted);margin:0 4px 12px;flex:1}
+.dots{display:flex;gap:6px;margin:0 4px 14px}
+.dots i{width:18px;height:18px;border-radius:50%;border:1px solid var(--line)}
+.open{align-self:flex-start;margin:0 4px 4px;font-size:15px;letter-spacing:.14em;text-transform:uppercase;border:1px solid currentColor;border-radius:30px;padding:9px 20px}
+</style></head>
+<body>
+<h1>Выберите оформление</h1>
+<p class="sub">Все четыре варианта — один и тот же сайт с вашими данными, меняется только стиль. Нажмите, чтобы открыть приглашение целиком.</p>
+<div class="grid" id="grid"></div>
+<script>
+const V=[
+ ['blue','Гортензия','Голубые гортензии, золотая сургучная печать, ночное небо',['#2f4ea8','#7f9ad6','#cfdcf1','#f7f4ee']],
+ ['pudra','Пудра','Нежно-розовые цветы, пыльная роза и бордовый вечер',['#b0606f','#e1a3ae','#f4dfe2','#fbf6f2']],
+ ['emerald','Изумруд и золото','Изумрудный с золотом и кыргызский орнамент «кочкор мүйүз»',['#1f5c47','#a8833f','#dde9e1','#f6f2e7']],
+ ['classic','Классика','Чёрное, белое и золото, белые цветы, чёрная печать',['#1e1e22','#a3874f','#efebe3','#faf8f4']]];
+document.getElementById('grid').innerHTML=V.map(([k,t,d,c])=>`<a class="card" href="./?theme=${k}">
+ <div class="shots"><img src="thumbs/${k}_1.jpg" alt="${t}: начало" loading="lazy"><img src="thumbs/${k}_2.jpg" alt="${t}: имена" loading="lazy"></div>
+ <h2>${t}</h2><p>${d}</p><div class="dots">${c.map(x=>`<i style="background:${x}"></i>`).join('')}</div><span class="open">Открыть</span></a>`).join('');
+</script>
+</body></html>

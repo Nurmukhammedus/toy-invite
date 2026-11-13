@@ -28,7 +28,7 @@ const CONFIG = {
   // ссылка на место в 2ГИС (откройте место в 2gis.kg → «Поделиться» → скопируйте ссылку)
   mapUrl: 'https://2gis.kg/bishkek/search/%D0%90%D0%BB%D0%B0-%D0%A2%D0%BE%D0%BE',
   dress: 'Кийимдериңизде ушул түстөрдү<br>колдонсоңуз, биз үчүн<br>чоң кубаныч болот',
-  colors: ['#2f4ea8','#7f9ad6','#c9d6ee','#f3efe6','#3b4766'],
+  colors: [],   // цвета дресс-кода; пусто = цвета выбранной темы
   rsvp: {
     deadline: '1-июнга чейин жооп бериңиз',
     // 1) Google Таблица: вставьте адрес веб-приложения Apps Script (см. README) — ответы попадут в таблицу
@@ -37,12 +37,15 @@ const CONFIG = {
     whatsapp: '996700000000'
   },
   closing: 'Урматтоо менен,',
+  theme: 'blue',   // 'blue' | 'pudra' | 'emerald' | 'classic'
   music: 'music.mp3',
   footer: ''   // например: 'Сайт-чакыруу: @your_instagram'
 };
 </script>
 <style>
-:root{--ivory:#f7f4ee;--ink:#3b4766;--blue:#2f4ea8;--blue2:#5a78c9;--dusty:#c9d6ee;--muted:#7a8199}
+:root{--ivory:#f7f4ee;--ink:#3b4766;--blue:#2f4ea8;--blue2:#5a78c9;--dusty:#c9d6ee;--muted:#7a8199;--soft:#cfdcf1;--h1:#2c3658;--h2:#151a2e;--h3:#0b0e1a;--gold:#ead2a0;--gold2:#e6d3a6}
+.orn{display:none;color:var(--gold)}
+body.ornament .orn{display:block}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{background:#e9e5dc;color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif;-webkit-font-smoothing:antialiased}
 body.locked{overflow:hidden;height:100vh}
@@ -58,11 +61,11 @@ h2{font-family:"Great Vibes",cursive;font-weight:400;font-size:46px;color:var(--
 .btn.ghost{background:transparent;color:var(--blue);border:1px solid var(--blue);box-shadow:none}
 
 /* hero */
-#hero{height:100vh;height:100svh;min-height:600px;padding:0;color:#f3ead8;background:radial-gradient(90% 60% at 50% 38%,#2c3658 0%,#151a2e 55%,#0b0e1a 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+#hero{height:100vh;height:100svh;min-height:600px;padding:0;color:#f3ead8;background:radial-gradient(90% 60% at 50% 38%,var(--h1) 0%,var(--h2) 55%,var(--h3) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
 #hero canvas{position:absolute;inset:0;width:100%;height:100%}
 #hero .ring{width:150px;height:150px;border-radius:50%;border:1px solid rgba(233,206,150,.55);display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:26px;box-shadow:0 0 40px rgba(233,206,150,.15) inset}
 #hero .ring::after{content:"";position:absolute;inset:8px;border-radius:50%;border:1px dashed rgba(233,206,150,.35)}
-#hero .mono{font-size:58px;color:#ead2a0;line-height:1}
+#hero .mono{font-size:58px;color:var(--gold);line-height:1}
 #hero h1{font-size:64px;color:#f6ecd6;line-height:1.05;text-shadow:0 0 18px rgba(255,220,160,.35)}
 #hero p{letter-spacing:.32em;text-transform:uppercase;font-size:13px;margin-top:14px;color:#cdbf9f}
 .chev{position:absolute;bottom:42px;left:50%;transform:translateX(-50%);width:34px}
@@ -154,12 +157,12 @@ footer{padding:20px 20px 40px;text-align:center;font-size:14px;color:var(--muted
     <svg class="flap" viewBox="0 0 430 390" preserveAspectRatio="none"><defs><linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f9f8f5"/><stop offset="1" stop-color="#ebe7df"/></linearGradient></defs><path d="M0 0H430V250Q215 420 0 250Z" fill="url(#fl)" stroke="#d8d3c9"/></svg>
     <svg class="garland" viewBox="0 0 390 140" preserveAspectRatio="none" id="garland"></svg>
     <svg class="seal" viewBox="0 0 120 120" id="seal">
-      <defs><radialGradient id="wax" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#f6dfb2"/><stop offset=".55" stop-color="#e2bd7d"/><stop offset="1" stop-color="#b98d4a"/></radialGradient>
+      <defs><radialGradient id="wax" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#f6dfb2" id="w1"/><stop offset=".55" stop-color="#e2bd7d" id="w2"/><stop offset="1" stop-color="#b98d4a" id="w3"/></radialGradient>
       <filter id="ds" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#6a5a3a" flood-opacity=".35"/></filter></defs>
       <path id="sealBlob" fill="url(#wax)" filter="url(#ds)"/>
-      <circle cx="60" cy="60" r="38" fill="none" stroke="#c89e5d" stroke-width="2.5"/>
+      <circle cx="60" cy="60" r="38" fill="none" stroke="#c89e5d" stroke-width="2.5" id="sealRing"/>
       <circle cx="60" cy="60" r="34" fill="none" stroke="#fae8c4" stroke-width="1" opacity=".7"/>
-      <text x="60" y="70" text-anchor="middle" font-family="Great Vibes" font-size="30" fill="#a77d3e" stroke="#f8e6c0" stroke-width=".5" data-c="monogram"></text>
+      <text x="60" y="70" text-anchor="middle" font-family="Great Vibes" font-size="30" fill="#a77d3e" stroke="#f8e6c0" stroke-width=".5" data-c="monogram" id="sealText"></text>
     </svg>
     <div class="hint"><b data-c="couple"></b>ачуу үчүн басыңыз</div>
   </div>
@@ -172,6 +175,7 @@ footer{padding:20px 20px 40px;text-align:center;font-size:14px;color:var(--muted
 <div id="content">
   <section id="hero">
     <canvas id="stars"></canvas>
+    <div class="orn rv" style="margin-bottom:22px" data-orn></div>
     <div class="ring rv"><span class="mono script" data-c="monogram"></span></div>
     <h1 class="script rv">Чакыруу</h1>
     <p class="rv" data-c="dateLine"></p>
@@ -181,7 +185,7 @@ footer{padding:20px 20px 40px;text-align:center;font-size:14px;color:var(--muted
   <section id="names">
     <div class="frame rv">
       <svg class="bg" viewBox="0 0 300 460" preserveAspectRatio="none"></svg>
-      <div class="hyd" data-seed="3" data-r="70" style="left:-58px;top:-40px"></div>
+      <div class="hyd" data-seed="3" data-r="66" style="left:-84px;top:-78px"></div>
       <div class="hyd" data-seed="9" data-r="62" style="right:-74px;bottom:-62px"></div>
       <div class="names script"><span data-c="groom"></span><span class="amp">&amp;</span><span data-c="bride"></span></div>
       <div class="daterow"><span data-c="weekday"></span><b data-c="day"></b><span data-c="monthName"></span></div>
@@ -199,6 +203,7 @@ footer{padding:20px 20px 40px;text-align:center;font-size:14px;color:var(--muted
   </section>
 
   <section id="calendar">
+    <div class="orn rv" style="margin:-20px auto 20px;width:220px;color:var(--blue2)" data-orn></div>
     <h2 class="rv" style="font-size:56px" data-c="calTitle"></h2>
     <div class="cal rv" id="cal"></div>
     <a class="btn ghost rv" id="ics" style="margin-top:28px" href="#">Календарга кошуу</a>
@@ -208,7 +213,7 @@ footer{padding:20px 20px 40px;text-align:center;font-size:14px;color:var(--muted
     <h2 class="rv">Той программасы</h2>
     <svg class="path" viewBox="0 0 390 760" preserveAspectRatio="xMidYMin meet">
       <path id="ppath" d="M70 0 C 70 120, 320 90, 300 210 S 70 300, 90 420 S 330 500, 300 620 S 160 720, 195 760" fill="none" stroke="#9aa4c0" stroke-width="1.3"/>
-      <g id="pheart"><path d="M0 6 C -14 -6,-10 -18,0 -10 C 10 -18,14 -6,0 6Z" transform="scale(1.4)" fill="#2f4ea8"/></g>
+      <g id="pheart"><path d="M0 6 C -14 -6,-10 -18,0 -10 C 10 -18,14 -6,0 6Z" transform="scale(1.4)" fill="var(--blue)"/></g>
     </svg>
     <div class="prog" id="prog"></div>
   </section>
@@ -257,8 +262,9 @@ footer{padding:20px 20px 40px;text-align:center;font-size:14px;color:var(--muted
   <section id="closing" style="padding-bottom:30px">
     <p class="lead rv" data-c="closing"></p>
     <div class="sign script rv" style="margin-top:10px"><span data-c="groom"></span><br><span style="color:var(--blue2)">&amp;</span><br><span data-c="bride"></span></div>
-    <svg class="rv" width="64" height="58" viewBox="-22 -22 44 40" style="margin:26px auto 0;display:block"><path d="M0 14 C -26 -4,-18 -26,0 -12 C 18 -26,26 -4,0 14Z" fill="#2f4ea8"/></svg>
+    <svg class="rv" width="64" height="58" viewBox="-22 -22 44 40" style="margin:26px auto 0;display:block"><path d="M0 14 C -26 -4,-18 -26,0 -12 C 18 -26,26 -4,0 14Z" fill="var(--blue)"/></svg>
     <p class="rv" style="margin-top:14px;font-style:italic;font-size:34px">Сизди күтөбүз!</p>
+    <div class="orn rv" style="margin:24px auto 0;width:220px;color:var(--blue2)" data-orn></div>
   </section>
   <footer data-c="footer"></footer>
 </div>
@@ -273,8 +279,30 @@ function rng(seed){let s=seed*9301+49297;return()=>{s=(s*9301+49297)%233280;retu
 const NS='http://www.w3.org/2000/svg';
 const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
 const C=CONFIG, WED=new Date(C.date), DAY=+C.date.slice(8,10), MON=+C.date.slice(5,7), YEAR=+C.date.slice(0,4);
+
+/* ---- themes ---- */
+const THEMES={
+  blue:{vars:{'--ivory':'#f7f4ee','--ink':'#3b4766','--blue':'#2f4ea8','--blue2':'#5a78c9','--dusty':'#c9d6ee','--muted':'#7a8199','--soft':'#cfdcf1','--h1':'#2c3658','--h2':'#151a2e','--h3':'#0b0e1a','--gold':'#ead2a0','--gold2':'#e6d3a6'},
+    flowers:['#1f3f9e','#2c52b8','#3f67c9','#5b82d6','#7c9ee2','#a5bdee'],leaves:['#5d7f4a','#6f9455','#4e6e3d'],soft:'#cfdcf1',wax:['#f6dfb2','#e2bd7d','#b98d4a','#c89e5d','#a77d3e'],colors:['#2f4ea8','#7f9ad6','#c9d6ee','#f3efe6','#3b4766']},
+  pudra:{vars:{'--ivory':'#fbf6f2','--ink':'#5a3b44','--blue':'#b0606f','--blue2':'#c98592','--dusty':'#f1d7db','--muted':'#9a7f86','--soft':'#f4dfe2','--h1':'#5b2d3a','--h2':'#341820','--h3':'#1c0c11','--gold':'#f0cfa8','--gold2':'#efc9a4'},
+    flowers:['#8e3b4f','#b05a6c','#cc7f8e','#e1a3ae','#efc4cb','#f8e1e4'],leaves:['#7d8f6a','#93a37e','#6b7c5a'],soft:'#f4dfe2',wax:['#f7d9d5','#dba4a1','#a8605f','#b56c6a','#8a4848'],colors:['#b0606f','#e1a3ae','#f4dfe2','#f6efe8','#5a3b44']},
+  emerald:{vars:{'--ivory':'#f6f2e7','--ink':'#1f3d33','--blue':'#1f5c47','--blue2':'#a8833f','--dusty':'#d9e6dd','--muted':'#6f8077','--soft':'#dde9e1','--h1':'#1d4a3b','--h2':'#0f2a21','--h3':'#071711','--gold':'#e3c27f','--gold2':'#d9b56b'},
+    flowers:['#c9b48a','#dccaa3','#eadcbc','#f3ead4','#faf4e6','#fffaf0'],leaves:['#2f5e48','#3d7258','#24503c'],soft:'#dde9e1',wax:['#f1dca0','#cfa65a','#8e6a2c','#b48b42','#7a5a22'],ornament:true,colors:['#1f5c47','#a8833f','#e9dcbc','#f6f2e7','#0f2a21']},
+  classic:{vars:{'--ivory':'#faf8f4','--ink':'#1e1e22','--blue':'#1e1e22','--blue2':'#a3874f','--dusty':'#e8e2d6','--muted':'#7d7a74','--soft':'#efebe3','--h1':'#2a2a2e','--h2':'#151517','--h3':'#050506','--gold':'#dcc28f','--gold2':'#d4b77d'},
+    flowers:['#cfc9bd','#ddd8ce','#e9e5dd','#f3f0ea','#faf8f4','#ffffff'],leaves:['#7f8a78','#959f8d','#6d776a'],soft:'#efebe3',wax:['#4a4a4f','#28282b','#0e0e10','#6a6a70','#d2b880'],colors:['#1e1e22','#5d5d63','#d8d2c6','#faf8f4','#a3874f']}
+};
+const TH=THEMES[new URLSearchParams(location.search).get('theme')||C.theme]||THEMES.blue;
+if(!C.colors||!C.colors.length)C.colors=TH.colors;
+for(const k in TH.vars)document.documentElement.style.setProperty(k,TH.vars[k]);
+document.querySelector('meta[name=theme-color]').content=TH.vars['--ivory'];
+['w1','w2','w3'].forEach((id,i)=>document.getElementById(id).setAttribute('stop-color',TH.wax[i]));
+document.getElementById('sealRing').setAttribute('stroke',TH.wax[3]);document.getElementById('sealText').setAttribute('fill',TH.wax[4]);
+if(TH.ornament)document.body.classList.add('ornament');
+/* кыргызский орнамент «кочкор мүйүз» */
+const ORN='<svg viewBox="0 0 240 60" width="220" height="55" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M120 50V30M120 30c0-14 12-22 24-18s14 18 4 22-14-6-8-10M120 30c0-14-12-22-24-18s-14 18-4 22 14-6 8-10M150 40c18 6 34-2 40-14s-4-22-14-18-4 14 4 10M90 40c-18 6-34-2-40-14s4-22 14-18 4 14-4 10M190 26c10 10 26 10 40 0M50 26c-10 10-26 10-40 0M112 50h16"/></svg>';
 const sub=s=>s.replace(/\{groom\}/g,C.groom).replace(/\{bride\}/g,C.bride);
 
+$$('[data-orn]').forEach(e=>e.innerHTML=ORN);
 /* ---- fill data ---- */
 const V={...C,couple:`${C.groom} & ${C.bride}`,day:DAY,year:YEAR,text:sub(C.text),text2:sub(C.text2),deadline:C.rsvp.deadline,
   dateLine:`${String(DAY).padStart(2,'0')} · ${String(MON).padStart(2,'0')} · ${YEAR}`};
@@ -286,7 +314,7 @@ C.colors.forEach(c=>$('#swatch').insertAdjacentHTML('beforeend',`<i style="backg
 (()=>{const c=$('#cal');['Дш','Шш','Шр','Бш','Жм','Иш','Жк'].forEach(w=>c.insertAdjacentHTML('beforeend',`<span class="wd">${w}</span>`));
   const first=(new Date(Date.UTC(YEAR,MON-1,1)).getUTCDay()+6)%7, days=new Date(Date.UTC(YEAR,MON,0)).getUTCDate();
   for(let i=0;i<first;i++)c.insertAdjacentHTML('beforeend','<span></span>');
-  for(let d=1;d<=days;d++)c.insertAdjacentHTML('beforeend',d===DAY?`<span class="hl">${d}<svg viewBox="-22 -22 44 40"><path d="M0 14 C -26 -4,-18 -26,0 -12 C 18 -26,26 -4,0 14Z" fill="#2f4ea8"/></svg></span>`:`<span>${d}</span>`)})();
+  for(let d=1;d<=days;d++)c.insertAdjacentHTML('beforeend',d===DAY?`<span class="hl">${d}<svg viewBox="-22 -22 44 40"><path d="M0 14 C -26 -4,-18 -26,0 -12 C 18 -26,26 -4,0 14Z" fill="var(--blue)"/></svg></span>`:`<span>${d}</span>`)})();
 
 /* ---- add to calendar (.ics) ---- */
 $('#ics').addEventListener('click',e=>{e.preventDefault();
@@ -305,10 +333,10 @@ $('#ics').addEventListener('click',e=>{e.preventDefault();
 function hydrangea(div){const R=+div.dataset.r,r=rng(+div.dataset.seed),S=R*2.6;
   const svg=el('svg',{viewBox:`${-S/2} ${-S/2} ${S} ${S}`,width:S,height:S},div);
   for(let i=0;i<5;i++){const a=r()*Math.PI*2,d=R*.85;const g=el('g',{transform:`translate(${Math.cos(a)*d} ${Math.sin(a)*d}) rotate(${a*57.3+90})`},svg);
-    el('path',{d:`M0 ${-R*.5} C ${R*.32} ${-R*.2}, ${R*.25} ${R*.35}, 0 ${R*.5} C ${-R*.25} ${R*.35}, ${-R*.32} ${-R*.2}, 0 ${-R*.5}Z`,fill:['#5d7f4a','#6f9455','#4e6e3d'][i%3],opacity:.9},g);
+    el('path',{d:`M0 ${-R*.5} C ${R*.32} ${-R*.2}, ${R*.25} ${R*.35}, 0 ${R*.5} C ${-R*.25} ${R*.35}, ${-R*.32} ${-R*.2}, 0 ${-R*.5}Z`,fill:TH.leaves[i%3],opacity:.9},g);
     el('path',{d:`M0 ${-R*.45}V${R*.45}`,stroke:'#3d5a2e','stroke-width':.8},g);}
   for(let i=0,n=Math.round(R*1.1);i<n;i++){const a=r()*Math.PI*2,d=Math.sqrt(r())*R*.92,x=Math.cos(a)*d,y=Math.sin(a)*d,s=7+r()*5;
-    const cols=['#1f3f9e','#2c52b8','#3f67c9','#5b82d6','#7c9ee2','#a5bdee'];const c=cols[Math.min(5,Math.floor((d/R*.6+r()*.5)*5))];
+    const cols=TH.flowers;const c=cols[Math.min(5,Math.floor((d/R*.6+r()*.5)*5))];
     const g=el('g',{transform:`translate(${x} ${y}) rotate(${r()*90})`},svg);
     for(let k=0;k<4;k++)el('ellipse',{cx:0,cy:-s*.55,rx:s*.42,ry:s*.58,fill:c,stroke:'#16307f','stroke-width':.35,transform:`rotate(${k*90})`},g);
     el('circle',{r:1.4,fill:'#dfe8ff'},g);}}
@@ -318,11 +346,11 @@ $$('.hyd').forEach(hydrangea);
 $$('.frame>svg.bg').forEach(svg=>{const pts=[];for(let i=0;i<64;i++){const a=i/64*Math.PI*2,k=1+.035*Math.cos(a*8);pts.push([150+Math.cos(a)*138*k,230+Math.sin(a)*218*k])}
   const d='M'+pts.map(q=>q.map(v=>v.toFixed(1)).join(' ')).join('L')+'Z';
   el('path',{d,fill:'#f6f2ea',stroke:'#d7d0c2','stroke-width':10,'stroke-dasharray':'2 3'},svg);
-  el('path',{d,fill:'#cfdcf1',transform:'translate(150 230) scale(.9) translate(-150 -230)'},svg);
+  el('path',{d,fill:TH.soft,transform:'translate(150 230) scale(.9) translate(-150 -230)'},svg);
   el('path',{d,fill:'none',stroke:'#fff','stroke-width':1.5,opacity:.8,transform:'translate(150 230) scale(.86) translate(-150 -230)'},svg);});
 
 /* ---- chevrons ---- */
-$('#chev').innerHTML=[0,1,2].map(i=>`<svg viewBox="0 0 34 18" width="34" height="18"><path d="M3 3l14 12L31 3" fill="none" stroke="#e6d3a6" stroke-width="1.6" opacity="${.35+i*.3}"/></svg>`).join('');
+$('#chev').innerHTML=[0,1,2].map(i=>`<svg viewBox="0 0 34 18" width="34" height="18"><path d="M3 3l14 12L31 3" fill="none" stroke="var(--gold2)" stroke-width="1.6" opacity="${.35+i*.3}"/></svg>`).join('');
 
 /* ---- envelope parts ---- */
 (()=>{const g=$('#embossG'),r=rng(5);
